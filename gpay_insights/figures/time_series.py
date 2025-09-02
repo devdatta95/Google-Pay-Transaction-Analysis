@@ -10,7 +10,7 @@ def _set_stable_y(fig: go.Figure, max_y: float, *, bottom=42, left=64):
     ymax = 0.0 if max_y <= 0 else max_y * 1.08
     ticks = np.linspace(0, ymax, 6)
     fig.update_layout(
-        height=config.FIG_H, autosize=False,
+        autosize=True,
         margin=dict(t=42, r=20, b=bottom, l=left),
         yaxis=dict(
             range=[0, ymax],
