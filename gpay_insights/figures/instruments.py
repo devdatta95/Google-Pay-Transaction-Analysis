@@ -8,5 +8,5 @@ def instruments_donut_figure(dff, instr_col, amt_col):
     fig = px.pie(ins, names=instr_col, values=amt_col, hole=0.55,
                  title="Payment Method Split (Outflow, Completed)")
     fig.update_traces(textposition="inside", texttemplate="%{label}<br>%{percent:.0%}")
-    fig.update_layout(height=config.FIG_H, autosize=False, margin=dict(t=42, r=20, b=40, l=64))
+    fig.update_layout(autosize=True, margin=dict(t=42, r=20, b=40, l=64))
     return fig

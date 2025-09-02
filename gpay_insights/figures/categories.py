@@ -12,5 +12,5 @@ def top_categories_figure(dff, cat_col, amt_col):
                  labels={cat_col:"Category", amt_col:"Amount (₹)"})
     fig.update_traces(hovertemplate="%{x}<br>₹%{y:.0f}<extra></extra>")
     fig.update_xaxes(tickangle=-28, title_standoff=36)
-    fig.update_layout(height=config.FIG_H, autosize=False, margin=dict(t=42, r=20, b=120, l=64))
+    fig.update_layout(autosize=True, margin=dict(t=42, r=20, b=120, l=64))
     return fig

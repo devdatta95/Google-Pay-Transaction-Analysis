@@ -55,7 +55,6 @@ def merchant_pareto_figure(dff, merchant_col, amt_col, topn=25):
 
     fig.update_layout(
         title=f"Merchant Pareto (Top {int(topn)}, Completed Outflow)",
-        # height=config.FIG_H_TALL,             # double height
         autosize=True,
         margin=dict(t=80, r=80, b=190, l=76), # big bottom for 90° labels
         legend=dict(

@@ -43,6 +43,6 @@ def flow_pie_figure(dff: pd.DataFrame, tx_col: str | None, amt_col: str, metric:
     fig = px.pie(agg, names="_psr", values="value", hole=0.55, title=title)
     fig.update_traces(textposition="inside", texttemplate="%{label}<br>%{percent:.0%}",
                       hovertemplate="%{label}<br>%{value:,.0f}<extra></extra>")
-    fig.update_layout(height=config.FIG_H, autosize=False, margin=dict(t=42, r=20, b=40, l=64),
+    fig.update_layout(autosize=True, margin=dict(t=42, r=20, b=40, l=64),
                       legend=dict(orientation="h", yanchor="bottom", y=1.1, xanchor="center", x=0.5))
     return fig

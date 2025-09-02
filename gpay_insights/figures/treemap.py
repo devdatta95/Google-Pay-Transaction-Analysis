@@ -8,5 +8,5 @@ def treemap_figure(dff, cat_col, merchant_col, amt_col):
     tdf = tdf.groupby([cat_col, merchant_col])[amt_col].sum().reset_index()
     fig = px.treemap(tdf, path=[cat_col, merchant_col], values=amt_col,
                      title="Category → Merchant (Outflow, Completed)")
-    fig.update_layout(height=config.FIG_H, autosize=False, margin=dict(t=42, r=20, b=40, l=64))
+    fig.update_layout(autosize=True, margin=dict(t=42, r=20, b=40, l=64))
     return fig

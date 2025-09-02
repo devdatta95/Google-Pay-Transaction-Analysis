@@ -22,6 +22,6 @@ def heatmap_figure(dff, amt_col, metric="count"):
     ))
     fig.update_layout(title="When do you spend? (Outflow, Completed)",
                       xaxis_title="Hour of Day", yaxis_title="Day of Week",
-                      height=config.FIG_H, autosize=False,
+                      autosize=True,
                       margin=dict(t=42, r=20, b=50, l=70))
     return fig

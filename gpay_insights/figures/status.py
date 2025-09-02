@@ -7,5 +7,5 @@ def status_bar_figure(dff, status_col, amt_col):
                  labels={status_col:"Status", amt_col:"Amount (₹)"})
     fig.update_traces(hovertemplate="%{x}<br>₹%{y:.0f}<extra></extra>")
     fig.update_xaxes(tickangle=-10, title_standoff=30)
-    fig.update_layout(height=config.FIG_H, autosize=False, margin=dict(t=42, r=20, b=80, l=64))
+    fig.update_layout(autosize=True, margin=dict(t=42, r=20, b=80, l=64))
     return fig

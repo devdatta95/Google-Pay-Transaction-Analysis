@@ -116,7 +116,7 @@ def forecast_figure(df, date_col, amt_col, status_col=None):
         hovermode="x unified",
         legend=dict(orientation="h", yanchor="bottom", y=1.12, xanchor="center", x=0.5,
                     bgcolor="rgba(255,255,255,0.85)", bordercolor="rgba(0,0,0,0.1)", borderwidth=1),
-        height=config.FIG_H, autosize=False, margin=dict(l=80, r=40, t=110, b=60)
+        autosize=True, margin=dict(l=80, r=40, t=110, b=60)
     )
     fig.update_yaxes(tickmode="array", tickvals=tickvals, ticktext=ticktext)
     return fig, fdf

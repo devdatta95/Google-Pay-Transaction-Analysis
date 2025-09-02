@@ -53,7 +53,6 @@ def monthly_txn_count_figure(df: pd.DataFrame, date_col: str) -> go.Figure:
         fig.update_layout(
             template="plotly_white",
             title="Monthly Transaction Count (with 3-mo Average)",
-            height=getattr(config, "FIG_H", 360),
             autosize=True,
             margin=dict(t=70, l=50, r=30, b=40),
         )
@@ -125,7 +124,6 @@ def monthly_txn_count_figure(df: pd.DataFrame, date_col: str) -> go.Figure:
         bargap=0.25,
         legend_title_text="",
         margin=dict(t=70, l=50, r=30, b=40),
-        height=getattr(config, "FIG_H", 360),
         autosize=True,
         uirevision="keep",
     )
