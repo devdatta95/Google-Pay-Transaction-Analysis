@@ -14,7 +14,7 @@ EXTERNAL_STYLESHEETS = [
 
 # Graph sizing
 FIG_H = 360
-FIG_H_TALL = FIG_H * 2   # for extra-tall charts like Merchant Pareto
+FIG_H_TALL = FIG_H    # for extra-tall charts like Merchant Pareto
 
 # GRAPH_STYLE = {"height": f"{FIG_H}px"}
 

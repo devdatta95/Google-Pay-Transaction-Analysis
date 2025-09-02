@@ -5,7 +5,7 @@ from .. import config
 def heatmap_figure(dff, amt_col, metric="count"):
     base = dff.loc[dff["_flow"]=="Outflow"].copy()
     if base.empty:
-        return go.Figure().update_layout(title="When do you spend? (Outflow, Completed)")
+        return go.Figure().update_layout(title="When do you spend more?")
     if metric == "amount":
         hm = base.groupby(["_dow","_hour"])[amt_col].sum().reset_index(name="value")
     else:
@@ -20,7 +20,7 @@ def heatmap_figure(dff, amt_col, metric="count"):
         z=pivot.values, x=list(pivot.columns), y=list(pivot.index),
         hovertemplate="Hour %{x}:00<br>%{y}<br>%{z:.0f}<extra></extra>"
     ))
-    fig.update_layout(title="When do you spend? (Outflow, Completed)",
+    fig.update_layout(title="When do you spend?",
                       xaxis_title="Hour of Day", yaxis_title="Day of Week",
                       autosize=True,
                       margin=dict(t=42, r=20, b=50, l=70))

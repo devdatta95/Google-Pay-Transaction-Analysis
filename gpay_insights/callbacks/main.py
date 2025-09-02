@@ -13,6 +13,8 @@ from ..figures.forecast import forecast_figure
 from ..rfm import compute_rfm
 from ..figures.flow_pie import flow_pie_figure
 from ..figures.txn_count import monthly_txn_count_figure  # <-- make sure this import exists
+from ..figures.instruments import instruments_donut_figure
+
 
 
 def register_main_callbacks(app, datactx):
