@@ -150,8 +150,19 @@ def build_layout(ctx):
                 ),
             ], style={"display": "grid", "gridTemplateColumns": "1fr", "gap": "12px", "margin": "0 12px 12px"}),
 
-            # ROW 3: Heatmap (full width, control in card header)
+            # ROW 3: Instruments Donut (30%) + Heatmap (70%)
             html.Div([
+                # Left: donut
+                html.Div(
+                    dcc.Graph(
+                        id="fig_instr_donut",
+                        config=config.GRAPH_CONFIG,
+                        style={**config.GRAPH_STYLE, "height": f"{FIG_H_TALL}px"},
+                    ),
+                    style=config.CARD_STYLE,
+                ),
+
+                # Right: heatmap with local metric switch
                 html.Div([
                     html.Div([
                         html.Span("Heatmap metric:",
@@ -172,7 +183,7 @@ def build_layout(ctx):
                         style={**config.GRAPH_STYLE, "height": f"{FIG_H_TALL}px"},
                     ),
                 ], style=config.CARD_STYLE),
-            ], style={"display": "grid", "gridTemplateColumns": "1fr", "gap": "12px", "margin": "12px"}),
+            ], style={"display": "grid", "gridTemplateColumns": "3fr 7fr", "gap": "12px", "margin": "12px"}),
 
             # ROW 4: Merchant Pareto (full width, Top-N slider in header)
             html.Div([

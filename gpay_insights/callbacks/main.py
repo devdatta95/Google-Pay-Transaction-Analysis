@@ -25,6 +25,7 @@ def register_main_callbacks(app, datactx):
         Output("fig_cat", "figure"),
         Output("fig_flow_pie", "figure"),
         Output("fig_txn_count", "figure"),        # <-- NEW in outputs (matches layout)
+        Output("fig_instr_donut", "figure"),  # NEW
         Output("fig_cal", "figure"),
         Output("fig_merch_pareto", "figure"),
         Output("treemap-total", "children"),
@@ -92,6 +93,7 @@ def register_main_callbacks(app, datactx):
         fig_cal  = heatmap_figure(dff_c, datactx.amt_col, metric=heat_metric or "count")
         fig_m    = merchant_pareto_figure(dff_c, datactx.merchant_col, datactx.amt_col, topn or 25)
         fig_tree = treemap_figure(dff_c, datactx.cat_col, datactx.merchant_col, datactx.amt_col)
+        fig_instr = instruments_donut_figure(dff_c, datactx.instr_col, datactx.amt_col)
 
         # Treemap total text (Completed Outflow)
         tot_outflow = float(dff_c.loc[dff_c["_flow"] == "Outflow", datactx.amt_col].sum()) if not dff_c.empty else 0.0
@@ -125,6 +127,7 @@ def register_main_callbacks(app, datactx):
             fig_cat,
             fig_flow,
             fig_txn_count,     # <-- keep the order in sync with Outputs
+            fig_instr,
             fig_cal,
             fig_m,
             treemap_total_text,
