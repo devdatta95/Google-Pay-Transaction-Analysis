@@ -1,0 +1,17 @@
+[project]
+name = "google-pay-analysis"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=2.3",
+    "dash>=2.16",
+    "plotly>=5.22",
+    "pandas>=2.1",
+    "numpy>=1.26",
+    "python-dateutil>=2.9",
+    "statsmodels>=0.14", # used for forecast; optional at runtime
+    "gunicorn>=21.2",
+    "scikit-learn>=1.7.1",
+]

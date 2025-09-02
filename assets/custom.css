@@ -1,0 +1,73 @@
+/* Basic page background to match the original light look */
+html, body {
+  background: #fbfbfc !important;
+}
+
+/* ---------- Layout helpers ---------- */
+
+/* Card container should let its inner Graph stretch vertically */
+.card-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The dcc.Graph wrapper inside the card should fill available height */
+.card-flex .dash-graph {
+  flex: 1 1 auto;
+  min-height: 0;            /* important for nested flex/grid */
+}
+
+/* Force Plotly containers to use 100% height of the Graph wrapper */
+.card-flex .dash-graph > div,
+.card-flex .js-plotly-plot,
+.card-flex .plot-container,
+.card-flex .main-svg {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* ---------- Controls ---------- */
+
+.date-controls {
+  display: flex;
+  gap: 16px;
+  margin: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.date-group label {
+  color: #333;
+  font-size: 12px;
+}
+
+.date-input {
+  color: #111;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 6px 8px;
+}
+
+/* Keep tables and graphs from overflowing horizontally */
+.dash-table-container,
+.dash-graph {
+  overflow: hidden;
+}
+
+/* Small utility spacing for section headings under cards */
+.section-subtle {
+  color: #666;
+  font-size: 12px;
+}
+
+/* Give graphs a little breathing room for titles/legends (Plotly manages margins too) */
+.js-plotly-plot .plotly, .js-plotly-plot .main-svg {
+  overflow: visible !important;
+}
