@@ -56,7 +56,7 @@ def build_layout(ctx):
         ], className="date-controls"),
 
         html.Div([
-            html.Label("Quick month range"),
+            html.Label("Select Timeline"),
             dcc.RangeSlider(
                 id="month-slider",
                 min=0, max=len(ctx.months_list) - 1, step=1,
@@ -118,12 +118,12 @@ def build_layout(ctx):
                 ),
                 html.Div([
                     html.Div([
-                        html.Span("Pie metric:",
+                        html.Span("Pie Chart Metric:",
                                   style={"fontSize": "12px", "color": "#444", "marginRight": "8px"}),
                         dcc.RadioItems(
                             id="flow-pie-metric",
                             options=[
-                                {"label": " Amount (₹)", "value": "amount"},
+                                {"label": " Amount (₹)  ", "value": "amount"},
                                 {"label": " Count", "value": "count"},
                             ],
                             value="amount",
@@ -150,8 +150,19 @@ def build_layout(ctx):
                 ),
             ], style={"display": "grid", "gridTemplateColumns": "1fr", "gap": "12px", "margin": "0 12px 12px"}),
 
-            # ROW 3: Heatmap (full width, control in card header)
+            # ROW 3: Instruments Donut (30%) + Heatmap (70%)
             html.Div([
+                # Left: donut
+                html.Div(
+                    dcc.Graph(
+                        id="fig_instr_donut",
+                        config=config.GRAPH_CONFIG,
+                        style={**config.GRAPH_STYLE, "height": f"{FIG_H_TALL}px"},
+                    ),
+                    style=config.CARD_STYLE,
+                ),
+
+                # Right: heatmap with local metric switch
                 html.Div([
                     html.Div([
                         html.Span("Heatmap metric:",
@@ -172,7 +183,7 @@ def build_layout(ctx):
                         style={**config.GRAPH_STYLE, "height": f"{FIG_H_TALL}px"},
                     ),
                 ], style=config.CARD_STYLE),
-            ], style={"display": "grid", "gridTemplateColumns": "1fr", "gap": "12px", "margin": "12px"}),
+            ], style={"display": "grid", "gridTemplateColumns": "3fr 7fr", "gap": "12px", "margin": "12px"}),
 
             # ROW 4: Merchant Pareto (full width, Top-N slider in header)
             html.Div([
@@ -189,7 +200,7 @@ def build_layout(ctx):
                     dcc.Graph(
                         id="fig_merch_pareto",
                         config=config.GRAPH_CONFIG,
-                        style={"height": f"{int(FIG_H_TALL * 1.15)}px"},  # nice, tall pareto
+                        style={"height": f"{int(FIG_H_TALL * 2.5)}px"},  # nice, tall pareto
                     ),
                 ], style=config.CARD_STYLE),
             ], style={"display": "grid", "gridTemplateColumns": "1fr", "gap": "12px", "margin": "12px"}),
@@ -203,7 +214,7 @@ def build_layout(ctx):
                     dcc.Graph(
                         id="fig_treemap",
                         config={**config.GRAPH_CONFIG, "responsive": True},
-                        style={"height": "100%"},
+                        style={"height": f"{int(FIG_H_TALL)}px"},
                     ),
                 ],
                     style={**config.CARD_STYLE, "height": "52vh", "minHeight": "420px"},
@@ -214,7 +225,7 @@ def build_layout(ctx):
                     dcc.Graph(
                         id="fig_status_bar",
                         config={**config.GRAPH_CONFIG, "responsive": True},
-                        style={"height": "100%"},
+                        style={"height": f"{int(FIG_H_TALL)}px"},
                     ),
                     style={**config.CARD_STYLE, "height": "52vh", "minHeight": "420px"},
                     className="card-flex",
@@ -222,6 +233,33 @@ def build_layout(ctx):
             ], style={"display": "grid", "gridTemplateColumns": "7fr 3fr", "gap": "12px", "margin": "12px"}),
 
         ], style={"scrollMarginTop": "64px"}),
+
+        # ---------------- Forecast ----------------
+        html.Div(id="forecast", children=[
+            html.Div([
+                html.Div("12-Month Forecast (Completed Outflow)",
+                         style={"fontWeight": 600, "marginBottom": "6px"}),
+                html.Button(
+                    "Download forecast CSV",
+                    id="btn-dl-forecast",
+                    n_clicks=0,
+                    style={
+                        "padding": "8px 12px",
+                        "borderRadius": "10px",
+                        "border": "1px solid #ddd",
+                        "background": "#f2fbff",
+                        "cursor": "pointer",
+                        "marginBottom": "8px",
+                    },
+                ),
+                dcc.Download(id="dl-forecast"),
+                dcc.Graph(
+                    id="fig_forecast",
+                    config=config.GRAPH_CONFIG,
+                    style={**config.GRAPH_STYLE, "height": f"{FIG_H_TALL}px"},
+                ),
+            ], style=config.CARD_STYLE),
+        ], style={"margin": "12px", "scrollMarginTop": "64px"}),
 
         # ---------------- RFM ----------------
         html.Div(id="rfm", children=[
@@ -275,30 +313,5 @@ def build_layout(ctx):
             ], style=config.CARD_STYLE),
         ], style={"margin": "12px", "scrollMarginTop": "64px"}),
 
-        # ---------------- Forecast ----------------
-        html.Div(id="forecast", children=[
-            html.Div([
-                html.Div("12-Month Forecast (Completed Outflow)",
-                         style={"fontWeight": 600, "marginBottom": "6px"}),
-                html.Button(
-                    "Download forecast CSV",
-                    id="btn-dl-forecast",
-                    n_clicks=0,
-                    style={
-                        "padding": "8px 12px",
-                        "borderRadius": "10px",
-                        "border": "1px solid #ddd",
-                        "background": "#f2fbff",
-                        "cursor": "pointer",
-                        "marginBottom": "8px",
-                    },
-                ),
-                dcc.Download(id="dl-forecast"),
-                dcc.Graph(
-                    id="fig_forecast",
-                    config=config.GRAPH_CONFIG,
-                    style={**config.GRAPH_STYLE, "height": f"{FIG_H_TALL}px"},
-                ),
-            ], style=config.CARD_STYLE),
-        ], style={"margin": "12px", "scrollMarginTop": "64px"}),
+
     ])

@@ -4,7 +4,7 @@ def apply_index_string(app):
     <html>
       <head>
         {{%metas%}}
-        <title>Google Pay Dashboard — Light</title>
+        <title>Google Pay Transaction Dashboard</title>
         {{%favicon%}}
         {{%css%}}
         <style>
@@ -23,12 +23,13 @@ def apply_index_string(app):
       </head>
       <body>
         <div class="topnav">
-            <div class="brand">GPay – Insights</div>
+            <div class="brand">Google Pay Transaction – Insights</div>
             <a class="navlink" href="#overview">Overview</a>
             <a class="navlink" href="#cats_merch">Categories & Merchants</a>
+            <a class="navlink" href="#forecast">Forecast</a>
             <a class="navlink" href="#rfm">RFM</a>
             <a class="navlink" href="#merchant_explorer">Merchant Explorer</a>
-            <a class="navlink" href="#forecast">Forecast</a>
+            
         </div>
         {{%app_entry%}}
         <footer class="site-footer">
