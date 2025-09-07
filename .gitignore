@@ -4,8 +4,10 @@ __pycache__/
 build/
 dist/
 wheels/
-data/
+.idea/
 *.egg-info
 
 # Virtual environments
 .venv
+Gpay_Transaction_Data.csv
+
